@@ -1168,6 +1168,10 @@ void CRATOUS_AppMain()
             nread = read(sockfd, messageBuffer, max_message_length);
             bytesReceived += nread;
         }
+        if(nread < 0){
+            fprintf(stderr, "CRATOUS: Error in reading messages!\n");
+            exit(EXIT_FAILURE);
+        }
         messageBuffer[bytesReceived] = '\0'; //makes sure we never segfault
 
         #ifdef DEBUG_MODE
